@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Favicon icon-->
+        <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/favicon/favicon.ico" />
+
+        <!-- Libs CSS -->
+
+        <link href="../../assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="../../assets/libs/dropzone/dist/dropzone.css" rel="stylesheet" />
+        <link href="../../assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+        <link href="../../assets/libs/prismjs/themes/prism-okaidia.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css" />
+        <!-- Theme CSS -->
+        <link rel="stylesheet" href="../../assets/css/theme.min.css" />
+        <title>Trainer's Class Schedule | Kurikulum</title>
+    </head>
+
+    <body class="bg-light">
+        <div id="db-wrapper">
+            <!-- navbar vertical -->
+            <!-- Sidebar -->
+            <nav class="navbar-vertical navbar">
+                <div class="nav-scroller">
+                    <!-- Brand logo -->
+                    <a class="navbar-brand" href="index.html">
+                        <p style="color: #fdfdfd; font-weight: bold; font-size: larger">Alsavedutech</p>
+                        <!-- <img src="./assets/images/brand/logo/logo.svg" alt="" /> -->
+                    </a>
+                    <!-- Navbar nav -->
+                    <ul class="navbar-nav flex-column" id="sideNavbar">
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow" href="index.html">
+                                <i data-feather="home" class="nav-icon icon-xs me-2"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow" href="buat_kelas.html">
+                                <i data-feather="file-plus" class="nav-icon icon-xs me-2"></i>
+                                Create Class
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow active" href="jadwal.html">
+                                <i data-feather="calendar" class="nav-icon icon-xs me-2"></i>
+                                Trainer Class Schedules
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Page content -->
+            <div id="page-content">
+                <div class="header @@classList">
+                    <!-- navbar -->
+                    <nav class="navbar-classic navbar navbar-expand-lg">
+                        <a id="nav-toggle" href="#"><i data-feather="menu" class="nav-icon me-2 icon-xs"></i></a>
+                        <div class="ms-lg-3 d-none d-md-none d-lg-block">
+                            <!-- Form
+                            <form class="d-flex align-items-center">
+                                <input type="search" class="form-control" placeholder="Search" />
+                            </form> -->
+                        </div>
+                        <!--Navbar nav -->
+                        <ul class="navbar-nav navbar-right-wrap ms-auto d-flex nav-top-wrap">
+                            <!-- List -->
+                            <li class="dropdown ms-2">
+                                <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="avatar avatar-md avatar-indicators avatar-online">
+                                        <img alt="avatar" src="../../assets/images/avatar/avatar-1.jpg" class="rounded-circle" />
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+                                    <div class="px-4 pb-0 pt-2">
+                                        <div class="lh-1">
+                                            <h5 class="mb-1">Miftahul Jannah</h5>
+                                            <a href="#" class="text-inherit fs-6">Curriculum</a>
+                                        </div>
+                                        <div class="dropdown-divider mt-3 mb-2"></div>
+                                    </div>
+
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a class="dropdown-item" href="./index.html"> <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>Sign Out </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Container fluid -->
+                <div class="container-fluid px-6 py-4">
+                    <!-- card body -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <!-- text -->
+                            <!-- <div class="text-center mb-7">
+                                <h1 class="display-4">Layouts</h1>
+                                <p>Customize your overview page layout. Choose the one that best fits your needs.</p>
+                            </div> -->
+                            <span class="divider fw-bold my-3">Trainer's Class Schedules</span>
+                        </div>
+                    </div>
+                    <!-- tabel kelas -->
+                    <div class="mt-5">
+                        <div class="table-responsive">
+                            <table id="example" class="table table-striped" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Class</th>
+                                        <th scope="col">Trainer</th>
+                                        <th scope="col">Level</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>KO1</th>
+                                        <td>UI/UX</td>
+                                        <td>Okta Mada</td>
+                                        <td>Beginner</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K02</th>
+                                        <td>Pemrograman Laravel</td>
+                                        <td>Miftahul Jannah</td>
+                                        <td>Expert</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K03</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-danger">private</span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K04</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-danger">private</span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K05</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-danger">private</span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K05</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K06</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K07</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K07</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K19</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K10</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>K12</th>
+                                        <td>Frontend</td>
+                                        <td>the Bird</td>
+                                        <td>Intermediet</td>
+                                        <td>13/05/2024</td>
+                                        <td><span class="badge rounded-pill bg-success"> reguler </span></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <path d="M12 20h9"></path>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                                Edit
+                                            </button>
+                                            |
+                                            <button type="button" class="btn btn-danger mb-2">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end -->
+
+                    <!-- Modal -->
+                    <div class="modal fade gd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit Class Schedules</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr data-dt-row="99" data-dt-column="2">
+                                                <td>Code:</td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp" />
+                                                </td>
+
+                                                <td>Class Name:</td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp" />
+                                                </td>
+                                            </tr>
+                                            <tr data-dt-row="99" data-dt-column="4">
+                                                <td>Trainer:</td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp" />
+                                                </td>
+
+                                                <td>Date:</td>
+                                                <td>
+                                                    <input type="date" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp" />
+                                                </td>
+                                            </tr>
+                                            <tr data-dt-row="99" data-dt-column="3">
+                                                <td>Class Level:</td>
+                                                <td>
+                                                    <select class="form-select" id="validationCustom04" required>
+                                                        <option selected disabled value="">Choose Level</option>
+                                                        <option>Beginner</option>
+                                                        <option>Intermediet</option>
+                                                        <option>Expert</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">Please select a valid state.</div>
+                                                </td>
+
+                                                <td>Status:</td>
+                                                <td>
+                                                    <select class="form-select" id="validationCustom04" required>
+                                                        <option selected disabled value="">Choose Status</option>
+                                                        <option>private</option>
+                                                        <option>reguler</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">Please select a valid state.</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Ya, Batal</button>
+                                    <button type="button" class="btn btn-success">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                            <polyline points="7 3 7 8 15 8"></polyline>
+                                        </svg>
+                                        Simpan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <!-- Libs JS -->
+        <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script defer src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+        <script defer src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+
+        <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/libs/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="../../assets/libs/feather-icons/dist/feather.min.js"></script>
+        <script src="../../assets/libs/prismjs/prism.js"></script>
+        <script src="../../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <script src="../../assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+        <script src="../../assets/libs/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+        <script src="../../assets/libs/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+        <!-- Theme JS -->
+        <script src="../../assets/js/theme.min.js"></script>
+        <script defer src="../../assets/script.js"></script>
+    </body>
+</html>
