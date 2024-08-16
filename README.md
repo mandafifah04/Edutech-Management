@@ -31,8 +31,3 @@ php -S localhost:8000 -t public || php artisan serve
 php artisan db:seed
 ```
 
-# Key security
-
-```Bash
-27POSdlyFvxpKyLo3TIUy73VrpdsoyyG10QCSuOhWLo=
-```
